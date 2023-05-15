@@ -12,6 +12,3 @@ for ship in ships:
     ship.get_instance()
 
     print(ship)
-
-arr = list(range(50, 101))
-print(arr[::2])
