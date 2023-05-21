@@ -1,5 +1,6 @@
 class Ship:
     __instance = None
+    """A class to represent a ship."""
 
     def __init__(self, name=None, captain=None, current_port=None, max_speed=0.0,
                  max_capacity=0.0, current_load=0.0, current_speed=0.0, id=10.4):
@@ -12,19 +13,19 @@ class Ship:
         self.current_load = current_load
         self.current_speed = current_speed
 
-    """Returns a string representation of the object for convenient display"""
+    """Constructs all the necessary attributes for the person object."""
 
     def __str__(self):
         return (f"Film: {self.name}, {self.captain}, {self.current_port}, {self.max_speed}, "
                 f"{self.max_capacity}, {self.current_load}, {self.current_speed}, {self.id}"
                 )
 
-    """Return current port"""
+    """Returns a string representation of the object for convenient display"""
 
     def dock(self):
         print("Current port:", self.current_port)
 
-    """Return current speed"""
+    """Return current port"""
 
     def set_speed(self, speed):
         if speed <= self.max_speed:
@@ -33,7 +34,7 @@ class Ship:
         else:
             print("Reduce ship speed!")
 
-    """Return whether it is possible to load more cargo"""
+    """Return current speed"""
 
     def load(self, weight):
         if self.current_load + weight <= self.max_capacity:
@@ -42,7 +43,7 @@ class Ship:
         else:
             print("Unable to load, reach maximum load capacity.")
 
-    """Return whether the ship can be unloaded"""
+    """Return whether it is possible to load more cargo"""
 
     def unload(self, weight):
         if self.current_load - weight >= 0:
@@ -51,10 +52,12 @@ class Ship:
         else:
             print("It is not possible to unload, there is no cargo.")
 
-    """Return instance"""
+    """Return whether the ship can be unloaded"""
 
     @staticmethod
     def get_instance():
         if not Ship.__instance:
             Ship.__instance = Ship()
         return Ship.__instance
+
+    """Return instance"""
