@@ -1,13 +1,18 @@
-from abc import ABC
-from models.ship import Ship
+"""
+This module defines the CruiseShip class, a subclass of Ship.
+"""
+from models.ship import Ship  # pylint: disable=import-error
 
 
-class CruiseShip(Ship, ABC):
+class CruiseShip(Ship):
     """A class to represent a cruise ship."""
 
     def __init__(self, name=None, captain=None, current_port=None, max_speed=0.0,
                  max_capacity=0.0, current_load=0.0, current_speed=0.0, id=10.4,
                  passenger_count=0.0, crew_count=0.0, number_of_support_staff=0.0):
+        # pylint: disable=invalid-name
+        # pylint: disable=too-many-arguments
+        # pylint: disable=redefined-builtin
         """
         Constructs a CruiseShip object.
 
@@ -24,8 +29,8 @@ class CruiseShip(Ship, ABC):
             crew_count (float): The number of crew members on the cruise ship.
             number_of_support_staff (float): The number of support staff members on the cruise ship.
         """
-        super(Ship, self).__init__(name, captain, current_port, max_speed,
-                                   max_capacity, current_load, current_speed, id)
+        super().__init__(name, captain, current_port, max_speed,
+                         max_capacity, current_load, current_speed, id)
         self.passenger_count = passenger_count
         self.crew_count = crew_count
         self.number_of_support_staff = number_of_support_staff
@@ -35,8 +40,10 @@ class CruiseShip(Ship, ABC):
         Returns the total number of people on the cruise ship.
 
         Returns:
-            float: The total number of people on the cruise ship (passengers, crew members, and support staff).
+            float: The total number of people on the cruise ship
+            (passengers, crew members, and support staff).
         """
+
         return self.passenger_count + self.crew_count + self.number_of_support_staff
 
     def calculate_load_time(self):

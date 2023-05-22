@@ -1,15 +1,20 @@
+"""
+This module defines the ShipManager class, which is responsible for managing ships.
+"""
 class ShipManager:
     """A class to manage ships."""
+
     def __init__(self):
         """Initialize the ShipManager."""
         self.ships = []
 
     def add_ship(self, ship):
         """
-        Add a ship to the manager.
+        Add a ship to the managers.
 
         Args:
             ship (Ship): The ship object to add.
+            :param self:
         """
         self.ships.append(ship)
 
@@ -22,10 +27,13 @@ class ShipManager:
 
         Returns:
             list: A list of ships with speeds greater than max_speed.
+            :param max_speed:
+            :param self:
         """
         print(f"Ships whose speed is greater than {max_speed} :")
-        max_speed_list = [ship for ship in self.ships if ship.get_max_speed() > max_speed]
-        print(max_speed_list)
+        max_speed_list = [ship for ship in self.ships
+                          if ship.set_speed(ship.current_speed) > max_speed]
+        return max_speed_list
 
     def find_all_with_same_current_port(self, current_port):
         """
@@ -36,7 +44,9 @@ class ShipManager:
 
         Returns:
             list: A list of ships with the same current port as current_port.
+            :param current_port:
+            :param self:
         """
         print(f"Ships whose port matches {current_port}")
-        same_port_list = [ship for ship in self.ships if ship.get_current_port() == current_port]
-        print(same_port_list)
+        same_port_list = [ship for ship in self.ships if ship.dock() == current_port]
+        return same_port_list

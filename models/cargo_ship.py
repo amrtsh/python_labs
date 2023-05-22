@@ -1,16 +1,20 @@
-from abc import ABC
+"""
+This module defines the CargoShip class, a subclass of Ship.
+"""
+from models.ship import Ship  # pylint: disable=import-error
 
-from models.ship import Ship
 
-
-class CargoShip(Ship, ABC):
+class CargoShip(Ship):
     """A class to represent a cargo ship."""
-    def __init__(self, id=10.4, name=None, captain=None, current_port=None, max_speed=0.0,
-                 max_capacity=0.0, current_load=0.0, current_speed=0.0,
+
+    def __init__(self, name=None, captain=None, current_port=None, max_speed=0.0,
+                 max_capacity=0.0, current_load=0.0, current_speed=0.0, id=10.4,
                  crew_count=0.0, tonnage=0.0, type_of_cargo=None):
+        # pylint: disable=invalid-name
+        # pylint: disable=too-many-arguments
+        # pylint: disable=redefined-builtin
         """
         Constructs a CargoShip object.
-
         Args:
             name (str): The name of the cargo ship.
             captain (str): The name of the ship's captain.
@@ -24,9 +28,8 @@ class CargoShip(Ship, ABC):
             tonnage (float): The tonnage of the cargo ship.
             type_of_cargo (str): The type of cargo carried by the cargo ship.
         """
-        super(Ship, self).__init__(name, captain, current_port, max_speed,
-                                   max_capacity, current_load, current_speed, id)
-        self.current_load = current_load
+        super().__init__(name, captain, current_port, max_speed, max_capacity,
+                         current_load, current_speed, id)
         self.crew_count = crew_count
         self.tonnage = tonnage
         self.type_of_cargo = type_of_cargo

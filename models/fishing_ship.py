@@ -1,9 +1,12 @@
-from abc import ABC
-from models.ship import Ship
+"""
+This module defines the FishingShip class, a subclass of Ship.
+"""
+from models.ship import Ship  # pylint: disable=import-error
 
 
-class FishingShip(Ship, ABC):
+class FishingShip(Ship):
     """A class to represent a fishing ship."""
+
     def __init__(self, name=None, captain=None, current_port=None, max_speed=0.0,
                  max_capacity=0.0, current_load=0.0, current_speed=0.0, id=10.4,
                  fisherman=0.0, crew_count=0.0):
@@ -22,9 +25,11 @@ class FishingShip(Ship, ABC):
             fisherman (float): The number of fishermen on the fishing ship.
             crew_count (float): The number of crew members on the fishing ship.
         """
-        super(Ship, self).__init__(name, captain, current_port, max_speed,
-                                   max_capacity, current_load, current_speed, id)
-        self.current_load = current_load
+        # pylint: disable=invalid-name
+        # pylint: disable=too-many-arguments
+        # pylint: disable=redefined-builtin
+        super().__init__(name, captain, current_port, max_speed,
+                         max_capacity, current_load, current_speed, id)
         self.fisherman = fisherman
         self.crew_count = crew_count
 
