@@ -1,6 +1,8 @@
 """
 This module defines the ShipManager class, which is responsible for managing ships.
 """
+
+
 class ShipManager:
     """A class to manage ships."""
 
@@ -14,6 +16,7 @@ class ShipManager:
 
         Args:
             ship (Ship): The ship object to add.
+            :param ship:
             :param self:
         """
         self.ships.append(ship)
