@@ -6,10 +6,10 @@ from abc import ABC, abstractmethod
 
 class Ship(ABC):  # pylint: disable=too-many-instance-attributes
     """A class to represent a ship."""
+    ship_power = set()
 
     def __init__(self, name=None, captain=None, current_port=None, max_speed=0.0,
-                 max_capacity=0.0, current_load=0.0, current_speed=0.0,
-                 id=10.4):
+                 max_capacity=0.0, current_load=0.0, current_speed=0.0, id=10.4):
         # pylint: disable=invalid-name
         # pylint: disable=too-many-arguments
         # pylint: disable=redefined-builtin
@@ -42,8 +42,10 @@ class Ship(ABC):  # pylint: disable=too-many-instance-attributes
             Returns:
                 str: A string representation of the ship.
             """
-        return (f"Ship: {self.name}, {self.captain}, {self.current_port}, {self.max_speed}, "
-                f"{self.max_capacity}, {self.current_load}, {self.current_speed}, {self.id}"
+        return (f"Ship: name-{self.name}, captain-{self.captain}, "
+                f"current port-{self.current_port}, max speed-{self.max_speed}, "
+                f"max capacity-{self.max_capacity}, current load-{self.current_load},"
+                f" current speed-{self.current_speed}, id-{self.id}"
                 )
 
     def dock(self):
@@ -59,12 +61,7 @@ class Ship(ABC):  # pylint: disable=too-many-instance-attributes
             Args:
                 speed (float): The desired speed for the ship.
             """
-        if speed <= self.max_speed:
-            self.current_speed = speed
-            print("Current speed of", self.name, ":", self.current_speed)
-        else:
-            print("Reduce ship speed!")
-        return self.current_speed
+        self.current_speed = speed
 
     def load(self, weight):
         """
@@ -88,9 +85,17 @@ class Ship(ABC):  # pylint: disable=too-many-instance-attributes
             """
         if self.current_load - weight >= 0:
             self.current_load -= weight
-            print("You can delete the load.")
+            print(f"{self.name}-You can delete the load.")
         else:
             print("It is not possible to unload, there is no cargo.")
+
+    def get_attributes(self, data_type):
+        """
+
+        :param data_type:
+        :return:
+        """
+        return {key: value for key, value in self.__dict__.items() if isinstance(value, data_type)}
 
     @abstractmethod
     def get_total_people_count(self):
