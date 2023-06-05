@@ -1,15 +1,17 @@
 """
 This module defines the CargoShip class, a subclass of Ship.
 """
+from decorators.decorator import result_to_file_decorator
 from models.ship import Ship  # pylint: disable=import-error
 
 
 class CargoShip(Ship):
     """A class to represent a cargo ship."""
+    ship_power = {130000}
 
     def __init__(self, name=None, captain=None, current_port=None, max_speed=0.0,
-                 max_capacity=0.0, current_load=0.0, current_speed=0.0, id=10.4,
-                 crew_count=0.0, tonnage=0.0, type_of_cargo=None):
+                 max_capacity=0.0, current_load=0.0, current_speed=0.0,
+                 crew_count=0.0, tonnage=0.0, type_of_cargo=None, id=10.4):
         # pylint: disable=invalid-name
         # pylint: disable=too-many-arguments
         # pylint: disable=redefined-builtin
@@ -34,6 +36,21 @@ class CargoShip(Ship):
         self.tonnage = tonnage
         self.type_of_cargo = type_of_cargo
 
+    def __str__(self):
+        """
+            Returns a string representation of the ship object for convenient display.
+
+            Returns:
+                str: A string representation of the ship.
+            """
+        return (f"Ship: id-{self.id}, name-{self.name}, captain-{self.captain}, "
+                f"current port-{self.current_port}, max speed-{self.max_speed}, "
+                f"max capacity-{self.max_capacity}, current load-{self.current_load},"
+                f"current speed-{self.current_speed}, crew_count-{self.crew_count},"
+                f"tonnage-{self.tonnage}, type_of_cargo-{self.type_of_cargo}"
+                )
+
+    @result_to_file_decorator("CargoShip")
     def get_total_people_count(self):
         """
         Returns the total number of people on the cargo ship.
