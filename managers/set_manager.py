@@ -58,8 +58,7 @@ class SetManager:
         if index >= len(self.ship_manager):
             raise IndexError("Index out of range")
 
-        else:
-            self.ship_manager[index]
+        return self.ship_manager[index]
 
     def __next__(self):
         """

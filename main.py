@@ -79,3 +79,5 @@ print(len(ship_power))
 
 print("Index (set_manager): ")
 print(ship_power[7])
+
+ships[0].load(9999)
