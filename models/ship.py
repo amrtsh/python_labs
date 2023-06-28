@@ -3,6 +3,9 @@ A module that defines the Ship class.
 """
 from abc import ABC, abstractmethod
 
+from decorators.decorator import logged
+from exceptions.load_error import LoadErrorException
+
 
 class Ship(ABC):  # pylint: disable=too-many-instance-attributes
     """A class to represent a ship."""
@@ -63,6 +66,7 @@ class Ship(ABC):  # pylint: disable=too-many-instance-attributes
             """
         self.current_speed = speed
 
+    @logged(LoadErrorException, "console")
     def load(self, weight):
         """
         Loads the specified weight onto the ship if it does not exceed the maximum load capacity.
@@ -74,7 +78,7 @@ class Ship(ABC):  # pylint: disable=too-many-instance-attributes
             self.current_load += weight
             print("You can add cargo.")
         else:
-            print("Unable to load, reach maximum load capacity.")
+            raise LoadErrorException
 
     def unload(self, weight):
         """
